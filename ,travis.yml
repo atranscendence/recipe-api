@@ -1,0 +1,10 @@
+language: python
+python:
+    - "3.6"
+services:
+    - docker
+
+befor_script: pip install docker-compose
+
+script:
+    - docker-compose run django_app sh -c "python manage.py test && flake8"
