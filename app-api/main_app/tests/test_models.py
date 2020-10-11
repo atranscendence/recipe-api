@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 
 class ModelTests(TestCase):
 
-
     def test_user_create_with_email(self):
         """
         Testing if uther with email is created
@@ -39,6 +38,6 @@ class ModelTests(TestCase):
 
         user = get_user_model().objects.create_superUser(
             'test@format.com', '1234'
-            )
+        )
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
