@@ -106,7 +106,8 @@ class PublicUserApiTests(TestCase):
         """Test that authentication is required for suers"""
         res = self.client.get(ME_URL)
 
-        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertTrue(res.status_code == status.HTTP_401_UNAUTHORIZED or
+                        res.status_code == status.HTTP_403_FORBIDDEN)
 
 
 class PrivateUserApiTests(TestCase):
