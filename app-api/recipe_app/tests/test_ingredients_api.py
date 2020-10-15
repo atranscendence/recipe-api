@@ -23,7 +23,7 @@ def sample_user(email=user_v['email'], password=user_v['password']):
 
 
 class PublicIngredientsTests(TestCase):
-    """Test publicly awalible ingredients API"""
+    """Test publicly awalible ingredients API."""
 
     def setUp(self):
         self.client = APIClient()
@@ -37,7 +37,7 @@ class PublicIngredientsTests(TestCase):
 
 
 class PrivateIngredientsApiTests(TestCase):
-    """Test private ingredients API"""
+    """Test private ingredients API."""
 
     def setUp(self):
         self.client = APIClient()
@@ -45,7 +45,7 @@ class PrivateIngredientsApiTests(TestCase):
         self.client.force_authenticate(self.user)
 
     def test_retrive_ingredient_list(self):
-        """Test retriving a list of ingredients"""
+        """Test retriving a list of ingredients."""
 
         Ingredient.objects.create(user=self.user, name='Kale')
         Ingredient.objects.create(user=self.user, name='Salt')
@@ -76,8 +76,8 @@ class PrivateIngredientsApiTests(TestCase):
     def test_create_ingredient_succesfull(self):
         """Test create a new ingredient"""
 
-        payload = {'name':'Cabbage'}
-        self.client.post(INGREDIENTS_URL,payload)
+        payload = {'name': 'Cabbage'}
+        self.client.post(INGREDIENTS_URL, payload)
 
         exist = Ingredient.objects.filter(
             user=self.user,
@@ -85,7 +85,6 @@ class PrivateIngredientsApiTests(TestCase):
         ).exists()
         self.assertTrue(exist)
 
-    
     def test_create_ingredient_invalid(self):
         """Test creating invalid ingredient fails"""
         payload = {'name': ''}

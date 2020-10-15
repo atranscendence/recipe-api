@@ -9,11 +9,6 @@ ME_URL = reverse('users_app:me')
 
 CREATE_USER_URL = reverse('users_app:create')
 TOKEN_URL = reverse('users_app:token')
-# payload = {
-#     'email': "tests1@test.com",
-#     'password': 'testpass',
-#     'name': 'TestName'
-# }
 
 
 def create_user(**params):
@@ -106,8 +101,8 @@ class PublicUserApiTests(TestCase):
         """Test that authentication is required for suers"""
         res = self.client.get(ME_URL)
 
-        self.assertTrue(res.status_code == status.HTTP_401_UNAUTHORIZED or
-                        res.status_code == status.HTTP_403_FORBIDDEN)
+        self.assertTrue(res.status_code == status.HTTP_401_UNAUTHORIZED
+                        or res.status_code == status.HTTP_403_FORBIDDEN)
 
 
 class PrivateUserApiTests(TestCase):
