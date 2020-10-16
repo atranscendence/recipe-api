@@ -72,3 +72,14 @@ class ModelTests(TestCase):
         )
         # when we covert tag to string we assert its euql to name
         self.assertEqual(str(ingredient), ingredient.name)
+
+    def test_recipy_str(self):
+        """Test recipy string representaion"""
+        recipe = models.Recipe.objects.create(
+            user=sample_user(),
+            title="steak and mushroom",
+            time_minutes=5,
+            price=5.00
+        )
+
+        self.assertEqual(str(recipe), recipe.title)
