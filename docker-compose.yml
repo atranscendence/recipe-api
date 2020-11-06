@@ -25,3 +25,5 @@ services:
             - POSTGRES_DB=django_app
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=password123
+        ports: 
+            - 5435:5432

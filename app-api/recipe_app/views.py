@@ -14,7 +14,7 @@ class FondationAtributesViewSet(viewsets.GenericViewSet,
                                 mixins.CreateModelMixin):
     "Base viewset that will use for Tags and Ingredinet for now"
     permission_classes = {IsAuthenticated, }  # IsAdminUser
-    authentication_classes = {TokenAuthentication, }
+   # authentication_classes = {TokenAuthentication, }
     # if not self.request.user.is_superuser:
 
     # overwrite get function addnig new features
@@ -46,7 +46,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.RecipeSerializer
     queryset = Recipe.objects.all()
     permission_classes = {IsAuthenticated, }
-    authentication_classes = {TokenAuthentication, }
+    # authentication_classes = {TokenAuthentication, }
 
     def get_queryset(self):
         """Retrive the recipes for the authenticated user"""
@@ -59,3 +59,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return serializers.RecipeDetailSerializer
         else:
             return self.serializer_class
+
+    def perform_create(self, serializer):
+        """Create new Recipe"""
+        serializer.save(user=self.request.user)
